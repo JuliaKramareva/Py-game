@@ -1,0 +1,52 @@
+import random
+CHOICES = ('scissors', 'stone', 'paper')
+QUIT_CHOICES = ('q', 'quit', 'exit')
+ALL_CHOICES = CHOICES + QUIT_CHOICES
+
+computer = random.choice(CHOICES)
+SPARE_COUNT = 0
+
+score1 = 0
+score2 = 0
+
+player_1 = str()
+while True:
+    print('QUIT CHOICES', QUIT_CHOICES)
+    # validate player 1 input
+    while True:
+        player_1 = input('Player 1 Make choice {}: '
+                         .format(CHOICES)).lower().strip()
+        if player_1 not in ALL_CHOICES:
+            print('Invalid choice: {}'.format(player_1))
+            print('Valid choices are: {}'.format(ALL_CHOICES))
+            continue
+        break
+    ############################
+
+    if player_1 in QUIT_CHOICES:
+        print('player 1 quit')
+        break
+
+    # validate player 2 input
+    while True:
+       if player_1 == computer:
+        SPARE_COUNT += 1
+        print('Spare')
+        break
+       elif player_1 == CHOICES[0] and computer == CHOICES[2] or (player_1 == CHOICES[1] and computer == CHOICES[0]) or\
+            (player_1 == CHOICES[2] and computer == CHOICES[1]):
+
+        score1 = score1 + 1
+        print("Score player_1: " + str(score1) + ";" + "computer: " + str(score2))
+        print('Player 1 wins')
+        break
+
+       elif player_1 == CHOICES[2] and computer == CHOICES[0] or (player_1 == CHOICES[0] and computer == CHOICES[1]) or\
+           (player_1 == CHOICES[1] and computer == CHOICES[2]):
+        score2 = score2 + 1
+        print("Score player_1: " + str(score1)+ ";" + "computer: " + str(score2))
+        print('computer wins')
+        break
+
+        print('player 1: {}'.format(player_1))
+        print('computer: {}'.format(computer))
